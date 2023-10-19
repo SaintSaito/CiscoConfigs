@@ -1,0 +1,19 @@
+---
+
+- hosts: devices
+  become: yes
+  tasks:
+    - name: Create the admin group
+      group:
+        name: admin
+        state: absent
+    - name: Create the users and add them to the admin group
+      user:
+        name: "{{ item }}"
+        state: absent
+        groups: admin
+      loop:
+        - billy
+        - jimmy
+          
+  
